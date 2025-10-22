@@ -4,7 +4,7 @@ topic: Anomaly Detection
 maintainer: Priyanga Dilini Talagala, Rob J. Hyndman, Gaetano Romano
 email: priyangad@uom.lk
 version: 2025-10-21
-source: https://github.com/pridiltal/ctv-AnomalyDetection
+source: https://github.com/cran-task-views/AnomalyDetection/
 ---
 
 This CRAN task view provides a comprehensive list of R packages for anomaly detection. Anomaly detection problems have many facets, and the techniques used are influenced by factors such as how anomalies are defined, the type of input data, and the expected output. These variations lead to diverse problem formulations, requiring different analytical approaches. This Task View helps users navigate the available tools by organizing them based on their applicability to different data types and detection methodologies.
@@ -13,34 +13,36 @@ Anomalies are often referred to by alternative names such as outliers, novelties
 
 Packages where anomaly detection is only a minor feature or offers very limited functions have been excluded. Tools that are outdated, redundant, or lack sufficient support have also not been considered.
 
-To facilitate navigation, the task view is structured into well-defined sections, including univariate outlier detection, multivariate detection (further categorized into density-based, distance-based, clustering-based, angle-based, and decision tree–based methods), temporal data, spatial and spatio-temporal data, functional data, and other specialized approaches. There is some overlap between the tools in this task view and those listed in the task views for `r view("Cluster")`, `r view("Epidemiology")`, `r view("ExtremeValue")`, and `r view("TimeSeries")`.
+To facilitate navigation, the task view is structured into well-defined sections, including univariate outlier detection, multivariate detection (further categorized into density-based, distance-based, clustering-based, angle-based, and decision tree-based methods), temporal data, spatial and spatio-temporal data, functional data, and other specialized approaches. There is some overlap between the tools in this task view and those listed in the task views for `r view("Cluster")`, `r view("Epidemiology")`, `r view("ExtremeValue")`, and `r view("TimeSeries")`.
 
 ### Univariate outlier detection
 
-- Univariate outlier detection methods focus on values in a single feature space. Package `r pkg("univOutl")` includes various methods for detecting univariate outliers, e.g., the Hidiroglou-Berthelot method. Methods to deal with skewed distribution are also included in this package.
+Univariate outlier detection methods focus on values in a single feature space.
+
+- The `r pkg("univOutl")` package includes various methods for detecting univariate outliers, e.g., the Hidiroglou-Berthelot method. Methods to deal with skewed distribution are also included in this package.
 - The `r pkg("dixonTest")` package provides Dixon's ratio test for outlier detection in small and normally distributed samples.
 - The `r pkg("hotspots")` package supports univariate outlier detection by identifying values that are disproportionately high based on both the deviance of any given value from a statistical distribution and its similarity to other values.
 - The `r pkg("outliers")` package provides a collection of tests commonly used for identifying outliers. For most functions the input is a numeric vector. If the argument is a data frame, then the outlier is calculated for each column by `sapply()`. The same behavior is applied by `apply()` when the matrix is given.
 - The `r pkg("extremevalues")` package offers outlier detection and plot functions for univariate data. In this work a value in the data is an outlier when it is unlikely to be drawn from the estimated distribution.
-- The `r pkg("funModeling")` package provides tools for outlier detection using top/bottom X%, Tukey’s boxplot definition, and Hampel’s method.
+- The `r pkg("funModeling")` package provides tools for outlier detection using top/bottom X%, Tukey's boxplot definition, and Hampel's method.
 - The `r pkg("alphaOutlier")` package provides Alpha-Outlier regions (as proposed by Davies and Gather (1993)) for well-known probability distributions.
 
 ### Multivariate outlier detection
 
-Under *a multivariate, high-dimensional, or multidimensional scenario,* where the focus is on n (\>2)-dimensional space, all attributes might be of the same type or might be a mixture of different types, such as categorical or numerical, which has a direct impact on the implementation and scope of the algorithm. The problems of anomaly detection in high-dimensional data are threefold, involving detection of (a) global anomalies, (b) local anomalies, and (c) microclusters or clusters of anomalies. Global anomalies are very different from the dense area with respect to their attributes. In contrast, a local anomaly is only an anomaly when it is distinct from, and compared with, its local neighbourhood. Microclusters, or clusters of anomalies, may cause masking problems. The following categorization of multivariate outlier detection techniques is based on the underlying methodological principle, including density-based outlier detection, distance-based outlier detection, clustering-based outlier detection, angle-based outlier detection, and decision tree–based approaches.
+Under *a multivariate, high-dimensional, or multidimensional scenario,* where the focus is on n (\>2)-dimensional space, all attributes might be of the same type or might be a mixture of different types, such as categorical or numerical, which has a direct impact on the implementation and scope of the algorithm. The problems of anomaly detection in high-dimensional data are threefold, involving detection of (a) global anomalies, (b) local anomalies, and (c) microclusters or clusters of anomalies. Global anomalies are very different from the dense area with respect to their attributes. In contrast, a local anomaly is only an anomaly when it is distinct from, and compared with, its local neighbourhood. Microclusters, or clusters of anomalies, may cause masking problems. The following categorization of multivariate outlier detection techniques is based on the underlying methodological principle, including density-based outlier detection, distance-based outlier detection, clustering-based outlier detection, angle-based outlier detection, and decision tree-based approaches.
 
-#### Multivariate outlier detection: density-based outlier detection
+#### Multivariate outlier detection: Density-based outlier detection
 
-- *Local Outlier Factor (LOF)* is an algorithm for detecting anomalous data points by measuring the local deviation of a given data point with respect to its neighbours. This algorithm, with some variations, is supported by many packages. The `r pkg("DescTools")` package provides functions for outlier detection using LOF and Tukey’s boxplot definition. Functions `LOF()` and `GLOSH` in package `r pkg("dbscan")` provide density-based anomaly detection methods using a kd-tree to speed up kNN search. Parallel implementation of LOF, which uses multiple CPUs to significantly speed up the LOF computation for large datasets, is available in the `r pkg("Rlof")` package. Package `r pkg("bigutilsr")` provides utility functions for outlier detection in large-scale data. It includes the LOF and outlier detection method based on departure from the histogram.
+- *Local Outlier Factor (LOF)* is an algorithm for detecting anomalous data points by measuring the local deviation of a given data point with respect to its neighbours. This algorithm, with some variations, is supported by many packages. The `r pkg("DescTools")` package provides functions for outlier detection using LOF and Tukey's boxplot definition. Functions `LOF()` and `GLOSH` in package `r pkg("dbscan")` provide density-based anomaly detection methods using a kd-tree to speed up kNN search. Parallel implementation of LOF, which uses multiple CPUs to significantly speed up the LOF computation for large datasets, is available in the `r pkg("Rlof")` package. Package `r pkg("bigutilsr")` provides utility functions for outlier detection in large-scale data. It includes the LOF and outlier detection method based on departure from the histogram.
 - The `r pkg("SMLoutliers")` package provides an implementation of the Local Correlation Integral method (Lof: Identifying density-based local outliers) for outlier detection in multivariate data, which consists of numeric values.
 - The `r pkg("ldbod")` package provides flexible functions for computing local density-based outlier scores. It allows for subsampling of input data or a user-specified reference data set to compute outlier scores against, so both unsupervised and semi-supervised outlier detection can be done.
 - The `r pkg("kernlab")` package provides kernel-based machine learning methods, including one-class Support Vector Machines for *novelty* detection.
-- The `r pkg("amelie")` package implements anomaly detection as binary classification for multivariate
+- The `r pkg("amelie")` package implements anomaly detection as binary classification for multivariate cross-sectional data.
 - The estimated density ratio function in the `r pkg("densratio")` package can be used in many applications such as anomaly detection, change-point detection, and covariate shift adaptation.
-- The `r pkg("lookout")` package detects outliers using leave-one-out kernel density estimates and extreme value theory. The bandwidth for kernel density estimates is computed using persistent homology, a technique in topological data analysis. It also has the capability to explore the birth and the cessation of outliers with changing bandwidth and significance levels via `persisting_outliers().`
+- The `r pkg("lookout")` package detects outliers using leave-one-out kernel density estimates and extreme value theory. The bandwidth for kernel density estimates is computed using persistent homology, a technique in topological data analysis. It also has the capability to explore the birth and the cessation of outliers with changing bandwidth and significance levels via `persisting_outliers()`.
 - The weighted BACON (blocked adaptive computationally efficient outlier nominators) algorithms in `r pkg("wbacon")` implement a weighted variant of the BACON algorithms for multivariate outlier detection and robust linear regression. The methods assume that the typical data follows an elliptically contoured distribution.
 
-#### Multivariate outlier detection: distance-based outlier detection
+#### Multivariate outlier detection: Distance-based outlier detection
 
 - The `r pkg("HDoutliers",  priority = "core")` package provides an implementation of an algorithm for univariate and multivariate outlier detection that can handle data with mixed categorical and continuous variables and the outlier masking problem.
 - The `r pkg("stray")` package implements an algorithm for detecting anomalies in high-dimensional data that addresses the limitations of the 'HDoutliers' algorithm. An approach based on extreme value theory is used for the anomalous threshold calculation.
@@ -54,17 +56,17 @@ Under *a multivariate, high-dimensional, or multidimensional scenario,* where th
 - The `r pkg("outlierMBC")` package implements sequential outlier identification for Gaussian mixture models.  Outliers are detected by comparing observed Mahalanobis distances with the theoretical distribution. It also provides an extension for Gaussian linear cluster-weighted models using studentized residuals. The method emphasizes model-based, distance-driven identification of anomalies.
 - The two packages `r pkg("RMSD")` and `r pkg("RMSDp")` implement Modified Stahel-Donoho (MSD) estimators for detecting outliers in elliptically distributed multivariate datasets using Mahalanobis distance. The `r pkg("RMSD")` package provides a single-core implementation, while `r pkg("RMSDp")` offers a parallelized version optimized for high-dimensional data.
 
-#### Multivariate outlier detection: clustering-based outlier detection
+#### Multivariate outlier detection: Clustering-based outlier detection
 
-- The `r pkg("kmodR")` package presents a unified approach for simultaneously clustering and discovering outliers in high-dimensional data. Their approach is formalized as a generalization of the k-MEANS problem.
-- The `r pkg("odetector")` package detects multivariate outliers using soft partitioning clustering algorithms such as Fuzzy C-means and its variants. Observations with low typicality degrees are flagged as outliers.
+- The `r pkg("kmodR")` package presents a unified approach for simultaneously clustering and discovering outliers in high-dimensional data. Their approach is formalized as a generalization of the k-means problem.
+- The `r pkg("odetector")` package detects multivariate outliers using soft partitioning clustering algorithms such as fuzzy C-means and its variants. Observations with low typicality degrees are flagged as outliers.
 - The  `r pkg("oclust")` package provides a function to detect and trim outliers in Gaussian mixture model-based clustering using methods described in Clark and McNicholas (2019).
 
-#### Multivariate outlier detection: angle-based outlier detection
+#### Multivariate outlier detection: Angle-based outlier detection
 
 - The `r pkg("abodOutlier")` package performs angle-based outlier detection on high-dimensional data. A complete, a randomized, and a KNN-based method are available.
 
-#### Multivariate outlier detection: decision tree based approaches
+#### Multivariate outlier detection: Decision tree based approaches
 
 - Explainable outlier detection method through decision tree conditioning is facilitated by the `r pkg("outliertree")` package.
 - The `r pkg("bagged.outliertrees")` package provides an explainable unsupervised outlier detection method based on an ensemble implementation of the existing OutlierTree procedure in the `r pkg("outliertree")` package. The implementation takes advantage of bootstrap aggregating (bagging) to improve robustness by reducing the possible masking effect and subsequent high variance (similarly to Isolation Forest), hence the name "Bagged OutlierTrees".
@@ -74,14 +76,14 @@ Under *a multivariate, high-dimensional, or multidimensional scenario,* where th
 - The `r pkg("bulkQC")` package includes the `ind_multi()` function for detecting multivariate outliers using Isolation Forests.
 
 
-#### Multivariate outlier detection: other approaches
+#### Multivariate outlier detection: Other approaches
 
 
-- The  `r pkg("abnormality")` package measures a subject's abnormality with respect to a reference population. A methodology is introduced to address this bias to accurately measure overall abnormality in high-dimensional spaces. It can be applied to datasets in which the number of observations is less than the number of features/variables, and it can be abstracted to practically any number of domains or dimensions.
+- The `r pkg("abnormality")` package measures a subject's abnormality with respect to a reference population. A methodology is introduced to address this bias to accurately measure overall abnormality in high-dimensional spaces. It can be applied to datasets in which the number of observations is less than the number of features/variables, and it can be abstracted to practically any number of domains or dimensions.
 - The `r pkg("ICSOutlier")` package performs multivariate outlier detection using invariant coordinates and offers different methods to choose the appropriate components. The current implementation targets data sets with only a small percentage of outliers, but future extensions are under preparation.
 - The `r pkg("sGMRFmix")` package provides an anomaly detection method for multivariate noisy sensor data using sparse Gaussian Markov random field mixtures. It can compute variable-wise anomaly scores.
 - Artificial neural networks for anomaly detection are implemented in the `r pkg("ANN2")` package.
-- The `r pkg("probout")` package estimates unsupervised outlier probabilities for multivariate numeric
+- The `r pkg("probout")` package estimates unsupervised outlier probabilities for multivariate numeric data with many observations from a nonparametric outlier statistic.
 - The `r pkg("mrfDepth")` package provides tools to compute depth measures and implementations of related tasks such as outlier detection, data exploration, and classification of multivariate, regression, and functional data.
 - The `r pkg("evtclass")` package provides two classifiers for open set recognition and novelty detection based on extreme value theory.
 - Cellwise outliers are entries in the data matrix that are substantially higher or lower than what could be expected based on the other cells in its column as well as the other cells in its row, taking the relations between the columns into account. Package `r pkg("cellWise")` provides tools for detecting cellwise outliers and robust methods to analyze data that may contain them.
@@ -124,7 +126,7 @@ These methods detect anomalies as new data arrives, supporting real-time or near
 
 - The `r pkg("oddstream")` package implements an algorithm for early detection of anomalous series within a large collection of streaming time series data. The model uses time series features as inputs and a density-based comparison to detect any significant changes in the distribution of the features.
 - The `r pkg("pasadr")` package monitors sensor measurements using a dual-phase approach: an initial training phase estimates baseline process behavior, followed by sequential detection of structural changes. It can detect both abrupt deviations and subtle manipulations, including stealthy attacks, by continuously updating test statistics.
-- The `r pkg("kfino")`package  detects impulse-noise outliers in streaming or sequential time series data using a Kalman filter–based recursive estimator. The package supports both Maximum Likelihood (ML) and Expectation-Maximization (EM) algorithms for parameter estimation. It provides sequential filtering, prediction, and anomaly scoring at each time step, without requiring access to the full historical series, making it well suited for real-time monitoring of sensors or automated measurement systems.
+- The `r pkg("kfino")`package  detects impulse-noise outliers in streaming or sequential time series data using a Kalman filter-based recursive estimator. The package supports both Maximum Likelihood (ML) and Expectation-Maximization (EM) algorithms for parameter estimation. It provides sequential filtering, prediction, and anomaly scoring at each time step, without requiring access to the full historical series, making it well suited for real-time monitoring of sensors or automated measurement systems.
 
 
 ### Spatial data
@@ -159,7 +161,7 @@ These methods detect anomalies as new data arrives, supporting real-time or near
 
 ### Pre-processing methods for outlier detection
 
-- The `r pkg("dobin")` package provides a dimension reduction technique for outlier detection using neighbours and constructs a set of basis vectors for outlier detection. It brings outliers to the forefront using fewer basis vectors.
+- The `r pkg("dobin")` package provides a dimension reduction technique for outlier detection using neighbors and constructs a set of basis vectors for outlier detection. It brings outliers to the forefront using fewer basis vectors.
 
 
 ### Specific application fields
@@ -175,7 +177,7 @@ These methods detect anomalies as new data arrives, supporting real-time or near
 
 - The `r pkg("precintcon")` package contains functions to analyze the precipitation intensity, concentration, and anomaly.
 - The  `r pkg("wql")` package, which stands for \`water quality,' provides functions including anomaly detection to assist in the processing and exploration of data from environmental monitoring programs.
-- The Grubbs‐Beck test is recommended by the federal guidelines for detection of low outliers in flood flow frequency computation in the United States. The `r pkg("MGBT")` package computes the multiple Grubbs-Beck low-outlier test on positively distributed data and utilities for non-interpretive U.S. Geological Survey annual peak-stream flow data processing.
+- The Grubbs-Beck test is recommended by the federal guidelines for detection of low outliers in flood flow frequency computation in the United States. The `r pkg("MGBT")` package computes the multiple Grubbs-Beck low-outlier test on positively distributed data and utilities for non-interpretive U.S. Geological Survey annual peak-stream flow data processing.
 - The  `r pkg("envoutliers")` package provides three semi-parametric methods for detection of outliers in environmental data based on kernel regression and subsequent analysis of smoothing residuals.
 - The  `r pkg("extremeIndex")` package computes an index measuring the amount of information brought by forecasts for extreme events, subject to calibration. This index is originally designed for weather or climate forecasts, but it may be used in other forecasting contexts.
 - The  `r pkg("npphen")` package detects phenological cycles and anomalies in vegetation using nonparametric kernel-based methods, suitable for both vector and raster data, identifying deviations from expected seasonal patterns.
@@ -184,19 +186,19 @@ These methods detect anomalies as new data arrives, supporting real-time or near
 
 - The `r pkg("survBootOutliers")` package provides concordance-based bootstrap methods for outlier detection in survival analysis.
 - The `r pkg("referenceIntervals")` package provides a collection of tools, including outlier detection, to allow the medical professional to calculate appropriate reference ranges (intervals) with confidence intervals around the limits for diagnostic purposes.
-- The `r pkg("bulkQC")` provides tools for quality control and outlier identification in multicenter randomized trials. It analyzes data from multiple study participants across several sites, detecting outliers at both the individual (univariate and multivariate) and site levels, with or without covariate adjustment. 
+- The `r pkg("bulkQC")` provides tools for quality control and outlier identification in multicenter randomized trials. It analyzes data from multiple study participants across several sites, detecting outliers at both the individual (univariate and multivariate) and site levels, with or without covariate adjustment.
 - The `r pkg("NMAoutlier")` package implements the forward search algorithm for the detection of outlying studies (studies with extreme results) in network meta-analysis.
 - The `r pkg("boutliers")` package provides methods for outlier detection and influence diagnostics for meta-analysis based on bootstrap distributions of the influence statistics.
 
 #### Genetics and bioinformatics applications
 
 - The `r pkg("pcadapt")` package provides methods to detect genetic markers involved in biological adaptation using statistical tools based on principal component analysis.
-- The `r pkg("GGoutlieR")` package detects and visualizes individuals with unusual geo-genetic patterns using a K-nearest neighbor approach. It identifies outliers that deviate from the isolation-by-distance assumption and provides statistical summaries and geographic visualizations. 
-- The `r pkg("MALDIrppa")` package provides methods for quality control and robust preprocessing and analysis of MALDI mass spectrometry data. 
+- The `r pkg("GGoutlieR")` package detects and visualizes individuals with unusual geo-genetic patterns using a K-nearest neighbor approach. It identifies outliers that deviate from the isolation-by-distance assumption and provides statistical summaries and geographic visualizations.
+- The `r pkg("MALDIrppa")` package provides methods for quality control and robust preprocessing and analysis of MALDI mass spectrometry data.
 - The `r pkg("qpcR")` package implements methods for kinetic outlier detection (KOD) in real-time polymerase chain reaction  (qPCR).
 - The `r pkg("OmicsQC")` package analyzes quality control metrics from multi-sample genomic sequencing studies to identify poor-quality samples. It transforms per-sample metrics into z-scores, models their distribution using parametric methods, and applies Cosine Similarity Outlier Detection to nominate potential outliers.
 - The `r pkg("OutSeekR")` package provides an approach to outlier detection in RNA-seq and related genomic data based on five statistics. It implements an outlier test by comparing the distributions of these statistics in observed data with those from simulated null data.
-- The `r pkg("phylter")` package detects and removes outliers in phylogenomics datasets by analyzing gene trees or matrices to identify species–gene outliers. It builds on the Distatis approach, a generalization of multidimensional scaling for multiple distance matrices.
+- The `r pkg("phylter")` package detects and removes outliers in phylogenomics datasets by analyzing gene trees or matrices to identify species-gene outliers. It builds on the Distatis approach, a generalization of multidimensional scaling for multiple distance matrices.
 
 #### Seismology and geoscience applications
 
@@ -215,7 +217,7 @@ These methods detect anomalies as new data arrives, supporting real-time or near
 - The `r pkg("anomaly")` package contains light curve time series data from the Kepler telescope.
 - The `r pkg("outbreaks")` package provides empirical or simulated disease outbreak data, either as RData or as text files.
 - The `r pkg("weird",  priority = "core")` package provides all the datasets used in Hyndman (2024), [That's Weird: Anomaly Detection Using R](https://OTexts.com/weird/).
-- The `r pkg("SCOUTer")` package provides a method to simulate controlled outliers using principal component analysis. New observations are generated based on target values of the Squared Prediction Error (SPE) and Hotelling’s $T^2$ statistics, allowing precise creation of outliers for testing and evaluation of anomaly detection methods.
+- The `r pkg("SCOUTer")` package provides a method to simulate controlled outliers using principal component analysis. New observations are generated based on target values of the Squared Prediction Error (SPE) and Hotelling's $T^2$ statistics, allowing precise creation of outliers for testing and evaluation of anomaly detection methods.
 
 
 ### Educational and companion resources
@@ -238,7 +240,6 @@ These methods detect anomalies as new data arrives, supporting real-time or near
 
 ### Links
 
-- Articles: ["Anomaly detection: A survey" in ACM Journals (2009)](https://dl.acm.org/doi/abs/10.1145/1541880.1541882)
-- Articles: ["Visualizing Big Data Outliers Through Distributed Aggregation" in IEEE Transactions on Visualization and Computer Graphics (2018)](https://dl.acm.org/doi/abs/10.1145/1541880.1541882)
-- Book: [That's weird! Anomaly detection using R (Hyndman; 2024)](https://otexts.com/weird/)
-
+- Articles: ["Anomaly Detection: A Survey" in ACM Journals (2009)](https://dl.acm.org/doi/abs/10.1145/1541880.1541882)
+- Articles: ["Visualizing Big Data Outliers through Distributed Aggregation" in IEEE Transactions on Visualization and Computer Graphics (2018)](https://dl.acm.org/doi/abs/10.1145/1541880.1541882)
+- Book: [That's Weird! Anomaly Detection Using R (Hyndman; 2024)](https://otexts.com/weird/)
