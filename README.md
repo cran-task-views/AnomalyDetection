@@ -1,7 +1,6 @@
 ## CRAN Task View: Anomaly Detection
 
-
-**URL:** <https://github.com/pridiltal/ctv-AnomalyDetection>
+**URL:** <https://CRAN.R-project.org/view=AnomalyDetection>
 
 **Source file:** [AnomalyDetection.md](AnomalyDetection.md)
 
