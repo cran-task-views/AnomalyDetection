@@ -26,6 +26,7 @@ Univariate outlier detection methods focus on values in a single feature space.
 - The `r pkg("extremevalues")` package offers outlier detection and plot functions for univariate data. In this work a value in the data is an outlier when it is unlikely to be drawn from the estimated distribution.
 - The `r pkg("funModeling")` package provides tools for outlier detection using top/bottom X%, Tukey's boxplot definition, and Hampel's method.
 - The `r pkg("alphaOutlier")` package provides Alpha-Outlier regions (as proposed by Davies and Gather (1993)) for well-known probability distributions.
+- The `r pkg("rmoriebricklayer")` package checks published tables with Benford first-digit tests, distribution drift between data releases (Kolmogorov-Smirnov, population stability index) and label-permutation forensics for categorical results.
 
 ### Multivariate outlier detection
 
